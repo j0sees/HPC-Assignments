@@ -1,0 +1,1 @@
+Average time for naiveSum_O0: 3.06744491176700000000

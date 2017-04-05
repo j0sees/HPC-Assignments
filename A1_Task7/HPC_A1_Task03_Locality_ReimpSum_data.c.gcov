@@ -1,0 +1,146 @@
+        -:    0:Source:HPC_A1_Task03_Locality_ReimpSum_data.c
+        -:    0:Graph:HPC_A1_Task03_Locality_ReimpSum_data.gcno
+        -:    0:Data:HPC_A1_Task03_Locality_ReimpSum_data.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include <stdio.h>
+        -:    2:#define N 1000
+        -:    3:#define NRS 1000
+        -:    4:#define NCS 1000
+        -:    5:/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+        -:    6:/*=====================================================*/
+        -:    7:/*Locality */
+        -:    8:/*=====================================================*/
+        -:    9:/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+        -:   10:
+        -:   11:
+        -:   12:/*=====================
+        -:   13:Declaration of Methods/Functions
+        -:   14:=====================*/
+        -:   15:void sumsRowCol
+        -:   16:(
+        -:   17:	double * rowSums,
+        -:   18:	double * colSums,
+        -:   19:	const double ** matrix,
+        -:   20:	size_t nrs,
+        -:   21:	size_t ncs
+        -:   22:);
+        -:   23:/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+        -:   24:
+        -:   25:
+        -:   26:/*=====================
+        -:   27:Main
+        -:   28:=====================*/
+function main called 1 returned 100% blocks executed 100%
+        1:   29:int main(void)
+        -:   30:{
+        -:   31:	/*printf("==> Locality(started)\n");*/
+        -:   32:
+        1:   33:	int nrs = 1000;
+        1:   34:	int ncs = 1000;
+        1:   35:	size_t sizeMatrix = sizeof(1000);
+        -:   36:
+        1:   37:	double ** matrix = (double**)malloc(nrs*sizeof(double*));
+     1001:   38:    for (int ix=0; ix < nrs; ++ix)
+branch  0 taken 99%
+branch  1 taken 1% (fallthrough)
+        -:   39:	{
+     1000:   40:	    matrix[ix] = (double*)malloc(ncs*sizeof(double));
+        -:   41:	}
+        -:   42:
+        -:   43:	/*Dummy Data
+        -:   44:	matrix[0][0] = 1;
+        -:   45:	matrix[0][1] = 2;
+        -:   46:	matrix[1][0] = 3;
+        -:   47:	matrix[1][1] = 4;
+        -:   48:	*/
+        -:   49:
+        1:   50:    	double p = 1000;
+     1001:   51:	for (int ix=0; ix < nrs; ++ix)
+branch  0 taken 99%
+branch  1 taken 1% (fallthrough)
+        -:   52:	{ 
+  1001000:   53:  		for (int jx=0; jx < nrs; ++jx)
+branch  0 taken 99%
+branch  1 taken 1% (fallthrough)
+        -:   54:		{
+  1000000:   55:		matrix[ix][jx]=p;
+        -:   56:		}
+        -:   57:	}
+        -:   58:	
+        1:   59:	double * rowSums = (double*)malloc(nrs*sizeof(double));
+        1:   60:	double * colSums = (double*)malloc(ncs*sizeof(double));
+        -:   61:	
+        1:   62:	sumsRowCol
+call    0 returned 100%
+        -:   63:	(
+        -:   64:		rowSums,
+        -:   65:		colSums,
+        -:   66:		matrix,
+        -:   67:		nrs,
+        -:   68:		ncs	
+        -:   69:	);
+        -:   70:
+        -:   71:	
+        -:   72:	/* Print solution of dummy data
+        -:   73:	for(int ix = 0;  ix < 10; ix++)
+        -:   74:	{
+        -:   75:		printf("row: %f, col: %f \n", rowSums[ix], colSums[ix]);
+        -:   76:	}
+        -:   77:	*/
+        -:   78:
+        -:   79:
+        -:   80:	/*Freeing all the mallocated data*/
+        1:   81:	free(rowSums);
+        1:   82:	free(colSums);
+     1001:   83:    for (int ix=0; ix < nrs; ++ix)
+branch  0 taken 99%
+branch  1 taken 1% (fallthrough)
+        -:   84:	{
+     1000:   85:	    free(matrix[ix]);
+        -:   86:	}
+        1:   87:	free(matrix);
+        -:   88:
+        -:   89:	/*printf("==> Locality(finished)\n");*/
+        1:   90:	return 0;
+        -:   91:}
+        -:   92:/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+        -:   93:
+        -:   94:
+        -:   95:/*=====================
+        -:   96:Definition of the Methods or Functions
+        -:   97:=====================*/
+        -:   98:/*
+        -:   99:	size_t ==> 
+        -:  100:	http://stackoverflow.com/questions/2550774/what-is-size-t-in-c or 
+        -:  101:	https://en.wikipedia.org/wiki/C_data_types#stddef.h
+        -:  102:*/
+        -:  103:
+function sumsRowCol called 1 returned 100% blocks executed 100%
+        1:  104:void sumsRowCol
+        -:  105:(
+        -:  106:	double * rowSums,
+        -:  107:	double * colSums,
+        -:  108:	const double ** matrix,
+        -:  109:	size_t nrs,
+        -:  110:	size_t ncs
+        -:  111:)
+        -:  112:{
+     1001:  113:	for (size_t ix=0; ix < nrs; ++ix ) /*i --> row; j--> column*/
+branch  0 taken 99%
+branch  1 taken 1% (fallthrough)
+        -:  114:	{
+     1000:  115:		double rowSum = 0;
+     1000:  116:		double colSum = 0;
+  1001000:  117:		for ( size_t jx=0; jx < ncs; ++jx )
+branch  0 taken 99%
+branch  1 taken 1% (fallthrough)
+        -:  118:		{
+  1000000:  119:			rowSum += matrix[ix][jx];
+  1000000:  120:			colSum += matrix[jx][ix];
+        -:  121:		}
+     1000:  122:		rowSums[ix] = rowSum;
+     1000:  123:		colSums[ix] = colSum;
+        -:  124:	}
+        1:  125:}
+        -:  126:/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
