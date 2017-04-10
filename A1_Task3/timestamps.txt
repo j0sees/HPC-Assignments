@@ -1,4 +1,0 @@
-Average time for locality: .01418212200200000000
-Average time for locality_ReimpSum: .01249930255400000000
-Average time for locality_O3: .00858060029900000000
-Average time for locality_ReimpSum_O3: .00771438259400000000

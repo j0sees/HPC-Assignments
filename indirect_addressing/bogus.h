@@ -1,0 +1,7 @@
+void bogus
+(
+	int * y
+)
+{
+
+}

@@ -1,0 +1,10 @@
+INLINING:
+
+Average time with inlining: 0.00243623078750000000
+Average time with method call: .00235497980470000000
+==========
+Secound measurements:
+Updated code:
+==========
+Average time with inlining: .00128896863630000000
+Average time with method call: .00234966198820000000
