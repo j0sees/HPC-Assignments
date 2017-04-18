@@ -1,6 +1,0 @@
-Average time for naiveSum_O0: 3.26337337146600000000
-Average time for naiveSum_O1: .37415721621400000000
-Average time for naiveSum_O2: .00125840047300000000
-Average time for naiveSum_O3: .00123499591100000000
-Average time for naiveSum_Os: .00124891658400000000
-Average time for naiveSum_Og: .37296328826700000000

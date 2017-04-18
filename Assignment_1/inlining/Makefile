@@ -5,9 +5,9 @@
 
 CC = gcc
 
-all : inlining inlining.o
-
 .PHONY : all clean time
+
+all : inlining inlining.o time
 
 inlining : inlining.o
 	$(CC) -o inlining inlining.o

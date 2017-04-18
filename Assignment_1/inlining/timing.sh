@@ -14,7 +14,7 @@ for FILE in $COBJ; do
 		let COUNTER+=1
 	done
 	AVGTIME=`echo $AVGTIME/$IT | bc -l`
-	echo Average time for $FILE with method call: $AVGTIME >> timestamps.txt
+	echo Average time for $FILE with inlining: $AVGTIME >> timestamps.txt
 
 done
 

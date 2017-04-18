@@ -1,10 +1,11 @@
 #include <stdio.h>
 
-void thousandUnFreeIntegers();
+int* thousandUnFreeIntegers();
 
 int main()
 {
-	/*void thousandUnFreeIntegers();*/
+	/* Allocate space for the integers without freeing the allocated space at the end of the program  */
+	int* test = thousandUnFreeIntegers();
 
 	int numberOfIterations = 1000000000;
 	long int sum = 0;
@@ -14,13 +15,14 @@ int main()
 		sum = sum + c;
 	}
 
-
+	int bogus = sizeof(test);
 	printf("solution %ld \n", sum);
+	printf("size of int %d", sizeof(int));
 	return 0;
 }
 
 
-void thousandUnFreeIntegers()
+int* thousandUnFreeIntegers()
 {
 	int thousand = 1000;
 	int * unFreeIntegers = (int*)malloc(thousand*sizeof(int));

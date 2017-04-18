@@ -6,9 +6,9 @@
 CC = gcc
 COBJ = indirect_O0 indirect_O3 direct_O0 direct_O3 
 
-all : $(COBJ)
-
 .PHONY : all time clean
+
+all : $(COBJ) time
 
 indirect_O0 : indirect_addressing.o
 	$(CC) -O0 -o indirect_O0 indirect_addressing.o

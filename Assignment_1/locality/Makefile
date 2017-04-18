@@ -6,9 +6,9 @@
 CC = gcc
 COBJ = locality_O0 locality_O3 locality_reimpsum_O3 locality_reimpsum_O0
 
-all : $(COBJ) locality.o locality_reimpsum.o 
-
 .PHONY : all time clean
+
+all : $(COBJ) locality.o locality_reimpsum.o time
 
 locality_O0 : locality.o
 	$(CC) -w -O0 -o locality_O0 locality.o
